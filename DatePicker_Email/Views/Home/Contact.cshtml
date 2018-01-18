@@ -1,0 +1,85 @@
+﻿@model DatePicker_Email.Models.Masaga
+
+@{
+	ViewData["Title"] = "Contact";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>
+	<label style="color:#96c04b;">
+		<span class="glyphicon glyphicon-pencil"></span>Написати листа (з Dependency injection):
+	</label>
+</h2>
+
+<form asp-action="Sender" id="masagaForm">
+	
+	<div class="row">
+		<div class="col-md-4">
+
+			<div class="form-group">
+				<label asp-for="From" class="control-label"></label>
+				<input asp-for="From" class="form-control" />
+				<span asp-validation-for="From" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="To" class="control-label"></label>
+				<input asp-for="To" class="form-control" />
+				<span asp-validation-for="To" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Subject" class="control-label"></label>
+				<input asp-for="Subject" class="form-control" />
+				<span asp-validation-for="Subject" class="text-danger"></span>
+			</div>
+		</div>
+
+		<div class="col-md-4">
+
+		</div>
+		<div class="col-md-4">
+			<label> SmtpClient.Credentials:</label>
+			<div asp-validation-summary="ModelOnly" class="text-danger">
+
+			</div>
+			<div class="form-group">
+				<label asp-for="SMTP_Host" class="control-label"></label>
+				<input asp-for="SMTP_Host" class="form-control" />
+				<span asp-validation-for="SMTP_Host" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Port" class="control-label"></label>
+				<input asp-for="Port" class="form-control" />
+				<span asp-validation-for="Port" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Login" class="control-label"></label>
+				<input asp-for="Login" class="form-control" />
+				<span asp-validation-for="Login" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Password" class="control-label"></label>
+				<input class="form-control" type="password" id="Password" name="Password" value=@Model.Password />
+				<span asp-validation-for="Password" class="text-danger"></span>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-10">
+			<div class="form-group">
+				<label asp-for="Body" class="control-label"></label>				
+				<textarea class="form-control" rows="7" cols="50" name="Body" form="masagaForm">@Model.Body</textarea>
+				<span asp-validation-for="Body" class="text-danger"></span>
+			</div>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<input type="submit" value="Send" class="btn btn-default" />
+	</div>
+
+</form>
+
+
+@section Scripts {
+	@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
